@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!-- 把对象的创建交给spring来管理 -->
+
+    <!-- spring对bean的管理细节
+         1. 创建bean的3种方式
+         2. bean对象的作用范围
+         3. bean对象的生命周期
+     -->
+
+    <!-- 创建bean的3种方式 -->
+    <!-- 第一种方式：使用默认构造函数创建 -->
+    <!--    <bean id="accountService" class="service.impl.AccountServiceImpl"/> -->
+    <!-- 第二种方式：使用普通工厂中的方法创建对象（使用某个类中的方法创建对象，并存入spring容器 -->
+    <!--    <bean id="instanceFactory" class="factory.InstanceFactory"/>-->
+    <!--    <bean id="accountService" factory-bean="instanceFactory" factory-method="getAccountService"/>-->
+    <!-- 第三种方式：使用静态工厂中的静态方法创建对象（使用某个类中的静态方法创建对象，并存入spring容器 -->
+    <!--    <bean id="accountService" class="factory.StaticFactory" factory-method="getAccountService"/>-->
+
+    <!-- bean的作用范围调整 -->
+    <bean id="accountService" class="service.impl.AccountServiceImpl"
+          scope="prototype" init-method="init" destroy-method="destroy"/>
+</beans>

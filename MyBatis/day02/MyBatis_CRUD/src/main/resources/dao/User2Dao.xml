@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dao.User2Dao">
+    <!-- 查询所有操作 -->
+    <select id="findAll" resultType="domain.User2">
+        select id as userId,username as userName,birthday as userBirthday,
+        sex as userSex,address as userAddress from user
+    </select>
+
+    <!-- 配置查询结果的列名与实体类的属性名之间的对应关系 -->
+    <resultMap id="userMap" type="domain.User2">
+        <!-- 主键字段的对应 -->
+        <id property="userId" column="id"/>
+        <!-- 非主键字段的对应 -->
+        <result property="userName" column="username"/>
+        <result property="userBirthday" column="birthday"/>
+        <result property="userSex" column="sex"/>
+        <result property="userAddress" column="address"/>
+    </resultMap>
+
+    <select id="findById" parameterType="int" resultMap="userMap">
+        select * from user where id = #{value}
+    </select>
+</mapper>
